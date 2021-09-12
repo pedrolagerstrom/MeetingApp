@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPF.EmployeeManagement.Model.Model;
 using WPF.EmployeeManagement.UI.Model;
 
 namespace WPF.EmployeeManagement.DataAccess
@@ -19,6 +20,10 @@ namespace WPF.EmployeeManagement.DataAccess
             new Employee { Id = 4, Firstname = "Juanete", Lastname = "Pérez", Email = "John@gmail.com", Phonenumber = "0701122334", Department = Department.Education },
             new Employee { Id = 5, Firstname = "New", Lastname = "SuperNew", Email = "new@gmail.com", Phonenumber = "0701122334", Department = Department.Education }
             );
+
+            modelBuilder.Entity<Meeting>().HasData(
+                new Meeting { Id = 1, Title = "Bostad", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(2)}
+                );
         }
     }
 }

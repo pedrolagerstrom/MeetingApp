@@ -16,5 +16,7 @@ namespace WPF.EmployeeManagement.UI.Event
     {
         public int Id { get; set; }
         public string Firstname { get; set; }
+
+        public string Title { get; set; }
     }
 }

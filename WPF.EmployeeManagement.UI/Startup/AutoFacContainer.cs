@@ -20,6 +20,9 @@ namespace WPF.EmployeeManagement.UI
             builder.RegisterType<EmployeeDetailViewModel>().As<IEmployeeDetailViewModel>();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
+            builder.RegisterType<MeetingViewModel>().As<IMeetingViewModel>();
+            builder.RegisterType<NavMeetingViewModel>().As<INavMeetingViewModel>();
+
             return builder.Build();
 
         }

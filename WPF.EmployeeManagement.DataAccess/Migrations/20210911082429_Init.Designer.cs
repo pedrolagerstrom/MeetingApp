@@ -10,8 +10,8 @@ using WPF.EmployeeManagement.DataAccess;
 namespace WPF.EmployeeManagement.DataAccess.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20210909085839_InitialNew")]
-    partial class InitialNew
+    [Migration("20210911082429_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -40,7 +43,18 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("Meetings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EndDate = new DateTime(2021, 9, 11, 12, 24, 28, 877, DateTimeKind.Local).AddTicks(5779),
+                            StartDate = new DateTime(2021, 9, 11, 10, 24, 28, 875, DateTimeKind.Local).AddTicks(7211),
+                            Title = "Bostad"
+                        });
                 });
 
             modelBuilder.Entity("WPF.EmployeeManagement.UI.Model.Employee", b =>
@@ -122,6 +136,15 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
                             Lastname = "SuperNew",
                             Phonenumber = "0701122334"
                         });
+                });
+
+            modelBuilder.Entity("WPF.EmployeeManagement.Model.Model.Meeting", b =>
+                {
+                    b.HasOne("WPF.EmployeeManagement.UI.Model.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("WPF.EmployeeManagement.UI.Model.Employee", b =>

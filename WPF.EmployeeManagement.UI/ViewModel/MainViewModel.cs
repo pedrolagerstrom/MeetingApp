@@ -13,20 +13,36 @@ namespace WPF.EmployeeManagement.UI.ViewModel
     public class MainViewModel
     {
         public MainViewModel(INavigationViewModel navigationViewModel, 
-            IEmployeeDetailViewModel employeeDetailViewModel)
+            IEmployeeDetailViewModel employeeDetailViewModel,
+            IMeetingViewModel meetingViewModel,
+            INavMeetingViewModel navMeetingViewModel)
         {
             NavigationViewModel = navigationViewModel;
             EmployeeDetailViewModel = employeeDetailViewModel;
+            MeetingViewModel = meetingViewModel;
+            NavMeetingViewModel = navMeetingViewModel;
         }
 
         public async Task Load()
         {
             //Loads the employee entities into the NavigationView
             await NavigationViewModel.LoadEmployees();
+            
+        }
+
+        public async Task Load2()
+        {
+            await NavMeetingViewModel.LoadMeetings();
+            
+            //Loads the employee entities into the NavigationView            
+            
         }
 
         public INavigationViewModel NavigationViewModel { get; }
         public IEmployeeDetailViewModel EmployeeDetailViewModel { get; }
+
+        public IMeetingViewModel MeetingViewModel { get; }
+        public INavMeetingViewModel NavMeetingViewModel { get; }
 
 
     }

@@ -11,6 +11,7 @@ namespace WPF.EmployeeManagement.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //ConnectionString
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EmployeeManagementDb;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }

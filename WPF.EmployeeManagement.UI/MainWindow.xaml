@@ -7,16 +7,23 @@
         xmlns:view="clr-namespace:WPF.EmployeeManagement.UI.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <view:NavigationView DataContext="{Binding NavigationViewModel}"/>
-        <view:EmployeeDetailView Grid.Column="1" DataContext="{Binding EmployeeDetailViewModel}"/>
+        <view:NavigationView Grid.Row="0" DataContext="{Binding NavigationViewModel}"/>
+        <view:EmployeeDetailView Grid.Column="1" Grid.Row="0" DataContext="{Binding EmployeeDetailViewModel}"/>
 
-
+        <view:NavMeetingView Grid.Row="1" DataContext="{Binding NavMeetingViewModel}"/>
+        <view:MeetingView Grid.Column="1" Grid.Row="1" DataContext="{Binding MeetingViewModel}"/>
 
     </Grid>
 </Window>
