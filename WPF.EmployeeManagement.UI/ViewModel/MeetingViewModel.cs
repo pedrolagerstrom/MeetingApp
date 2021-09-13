@@ -11,12 +11,12 @@ namespace WPF.EmployeeManagement.UI.ViewModel
 {
     public class MeetingViewModel : ViewModelPropertyChangedNotifier, IMeetingViewModel
     {
-        private readonly IEmployeeDataService _employeeDataService;
+        private readonly IMeetingDataService _meetingDataService;
         private readonly IEventAggregator _eventAggregator;
 
-        public MeetingViewModel(IEmployeeDataService employeeDataService, IEventAggregator eventAggregator)
+        public MeetingViewModel(IMeetingDataService meetingDataService, IEventAggregator eventAggregator)
         {
-            _employeeDataService = employeeDataService;
+            _meetingDataService = meetingDataService;
             _eventAggregator = eventAggregator;
 
             _eventAggregator.GetEvent<OpenObjectDetailsEvent>().Subscribe(HandleMeetingSelectedEvent);
@@ -30,7 +30,7 @@ namespace WPF.EmployeeManagement.UI.ViewModel
 
         private async void OnSaveExecute()
         {
-            await _employeeDataService.SaveAsync(Meeting);
+            await _meetingDataService.SaveAsync(Meeting);
             _eventAggregator.GetEvent<AfterSavedEvent>().Publish(
                 new InfoAboutChangedEntityArgs
                 {
@@ -47,7 +47,7 @@ namespace WPF.EmployeeManagement.UI.ViewModel
 
         public async Task LoadMeetingById(int meetingId)
         {
-            Meeting = await _employeeDataService.GetMeetingById(meetingId);
+            Meeting = await _meetingDataService.GetMeetingById(meetingId);
 
 
         }

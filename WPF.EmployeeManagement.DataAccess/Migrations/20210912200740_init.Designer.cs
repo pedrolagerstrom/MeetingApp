@@ -10,8 +10,8 @@ using WPF.EmployeeManagement.DataAccess;
 namespace WPF.EmployeeManagement.DataAccess.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20210911082429_Init")]
-    partial class Init
+    [Migration("20210912200740_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,6 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -43,17 +40,22 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
                     b.ToTable("Meetings");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            EndDate = new DateTime(2021, 9, 11, 12, 24, 28, 877, DateTimeKind.Local).AddTicks(5779),
-                            StartDate = new DateTime(2021, 9, 11, 10, 24, 28, 875, DateTimeKind.Local).AddTicks(7211),
-                            Title = "Bostad"
+                            EndDate = new DateTime(2021, 9, 13, 0, 7, 39, 947, DateTimeKind.Local).AddTicks(9772),
+                            StartDate = new DateTime(2021, 9, 12, 22, 7, 39, 946, DateTimeKind.Local).AddTicks(1443),
+                            Title = "Möte"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EndDate = new DateTime(2021, 9, 13, 0, 7, 39, 948, DateTimeKind.Local).AddTicks(103),
+                            StartDate = new DateTime(2021, 9, 12, 22, 7, 39, 948, DateTimeKind.Local).AddTicks(92),
+                            Title = "Möte 2"
                         });
                 });
 
@@ -138,20 +140,13 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WPF.EmployeeManagement.Model.Model.Meeting", b =>
-                {
-                    b.HasOne("WPF.EmployeeManagement.UI.Model.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("WPF.EmployeeManagement.UI.Model.Employee", b =>
                 {
-                    b.HasOne("WPF.EmployeeManagement.Model.Model.Meeting", null)
+                    b.HasOne("WPF.EmployeeManagement.Model.Model.Meeting", "Meeting")
                         .WithMany("EmployeesAttendingMeeting")
                         .HasForeignKey("MeetingId");
+
+                    b.Navigation("Meeting");
                 });
 
             modelBuilder.Entity("WPF.EmployeeManagement.Model.Model.Meeting", b =>

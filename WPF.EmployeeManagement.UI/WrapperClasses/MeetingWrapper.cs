@@ -32,7 +32,6 @@ namespace WPF.EmployeeManagement.UI.WrapperClasses
 
         public DateTime StartDate { get; set; }        
         public DateTime EndDate { get; set; }
-        public Employee Employee { get; set; }
         public ICollection<Employee> EmployeesAttendingMeeting { get; set; }
     }
 }

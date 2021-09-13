@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,33 +48,7 @@ namespace WPF.EmployeeManagement.UI.Data
         }
 
 
-        public async Task<List<Meeting>> GetMeetings()
-        {
-            using (var context = _dbContext())
-            {
-                return await context.Meetings.ToListAsync();
-            }
-        }
-
-        public async Task<Meeting> GetMeetingById(int meetingId)
-        {
-            using (var context = _dbContext())
-            {
-                return await context.Meetings.SingleAsync(m => m.Id == meetingId);
-            }
-        }
-
-        public async Task SaveAsync(Meeting meeting)
-        {
-            using (var context = _dbContext())
-            {
-                //Attach Entity to Context so it is aware of the instance
-                context.Meetings.Attach(meeting);
-                //Context is aware of the Entity's existence but remains unmodified
-                context.Entry(meeting).State = EntityState.Modified;
-                await context.SaveChangesAsync();
-            }
-        }
+        
 
 
         //public IEnumerable<Employee> GetEmployees()

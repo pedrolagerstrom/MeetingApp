@@ -15,6 +15,7 @@ namespace WPF.EmployeeManagement.UI
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<EmployeeDbContext>().AsSelf();
             builder.RegisterType<EmployeeDataService>().As<IEmployeeDataService>();
+            builder.RegisterType<MeetingDataService>().As<IMeetingDataService>();
 
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<EmployeeDetailViewModel>().As<IEmployeeDetailViewModel>();

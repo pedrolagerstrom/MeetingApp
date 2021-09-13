@@ -8,12 +8,11 @@ using WPF.EmployeeManagement.UI.Model;
 
 namespace WPF.EmployeeManagement.UI.Data
 {
-    public interface IEmployeeDataService
+    public interface IMeetingDataService
     {
-        Task<List<Employee>> GetEmployees();
-        Task<Employee> GetEmployeeById(int employeeId);
-        Task SaveAsync(Employee employee);
-
-        
+        Task<IEnumerable<Meeting>> GetMeetings();
+        Task<Meeting> GetMeetingById(int meetingId);
+        Task SaveAsync(Meeting meeting);
+        Task AddEmployeeToMeeting(Meeting meeting, Employee employee);
     }
 }

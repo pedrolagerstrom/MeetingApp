@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WPF.EmployeeManagement.DataAccess.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,8 +15,7 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: true)
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,39 +60,26 @@ namespace WPF.EmployeeManagement.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Meetings",
-                columns: new[] { "Id", "EmployeeId", "EndDate", "StartDate", "Title" },
-                values: new object[] { 1, null, new DateTime(2021, 9, 11, 12, 24, 28, 877, DateTimeKind.Local).AddTicks(5779), new DateTime(2021, 9, 11, 10, 24, 28, 875, DateTimeKind.Local).AddTicks(7211), "Bostad" });
+                columns: new[] { "Id", "EndDate", "StartDate", "Title" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2021, 9, 13, 0, 7, 39, 947, DateTimeKind.Local).AddTicks(9772), new DateTime(2021, 9, 12, 22, 7, 39, 946, DateTimeKind.Local).AddTicks(1443), "Möte" },
+                    { 2, new DateTime(2021, 9, 13, 0, 7, 39, 948, DateTimeKind.Local).AddTicks(103), new DateTime(2021, 9, 12, 22, 7, 39, 948, DateTimeKind.Local).AddTicks(92), "Möte 2" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_MeetingId",
                 table: "Employees",
                 column: "MeetingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Meetings_EmployeeId",
-                table: "Meetings",
-                column: "EmployeeId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Meetings_Employees_EmployeeId",
-                table: "Meetings",
-                column: "EmployeeId",
-                principalTable: "Employees",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employees_Meetings_MeetingId",
-                table: "Employees");
+            migrationBuilder.DropTable(
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Meetings");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
         }
     }
 }

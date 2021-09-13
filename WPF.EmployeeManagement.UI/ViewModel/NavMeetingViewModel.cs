@@ -13,14 +13,14 @@ namespace WPF.EmployeeManagement.UI.ViewModel
 {
     public class NavMeetingViewModel : ViewModelPropertyChangedNotifier, INavMeetingViewModel
     {
-        private readonly IEmployeeDataService _employeeDataService;
+        private readonly IMeetingDataService _meetingDataService;
         private readonly IEventAggregator _eventAggregator;
 
         public ObservableCollection<NavigationItemViewModel> Meetings { get; }
 
-        public NavMeetingViewModel(IEmployeeDataService employeeDataService, IEventAggregator eventAggregator)
+        public NavMeetingViewModel(IMeetingDataService meetingDataService, IEventAggregator eventAggregator)
         {
-            _employeeDataService = employeeDataService;
+            _meetingDataService = meetingDataService;
             _eventAggregator = eventAggregator;
             Meetings = new ObservableCollection<NavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterSavedEvent>().Subscribe(AfterSavedEventHandler);
@@ -35,7 +35,7 @@ namespace WPF.EmployeeManagement.UI.ViewModel
 
         public async Task LoadMeetings()
         {
-            var meetings = await _employeeDataService.GetMeetings();
+            var meetings = await _meetingDataService.GetMeetings();
             Meetings.Clear();
             foreach (var meeting in meetings)
             {

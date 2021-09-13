@@ -22,7 +22,8 @@ namespace WPF.EmployeeManagement.DataAccess
             );
 
             modelBuilder.Entity<Meeting>().HasData(
-                new Meeting { Id = 1, Title = "Bostad", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(2)}
+                new Meeting { Id = 1, Title = "Möte", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(2) },
+                new Meeting { Id = 2, Title = "Möte 2", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(2) }
                 );
         }
     }

@@ -17,7 +17,6 @@ namespace WPF.EmployeeManagement.Model.Model
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime EndDate { get; set; }
-        public Employee Employee { get; set; }
         public ICollection<Employee> EmployeesAttendingMeeting { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPF.EmployeeManagement.Model.Model;
 using WPF.EmployeeManagement.UI.Model;
 using WPF.EmployeeManagement.UI.ViewModel;
 
@@ -32,6 +33,7 @@ namespace WPF.EmployeeManagement.UI.WrapperClasses
         public string Lastname { get; set; }
         public string Email { get; set; }
         public Department Department { get; set; }
+        public Meeting Meeting { get; set; }
 
 
     }

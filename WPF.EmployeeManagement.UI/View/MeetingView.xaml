@@ -30,12 +30,15 @@
         <TextBox Grid.Row="5" Text="{Binding Meeting.EndDate, 
                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         <Label  Grid.Row="6" Content="Employees Attending" Margin="10 10 10 0"/>
-        <TextBox Grid.Row="7" Text="{Binding Meeting.EmployeesAttendingMeeting, 
-                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>        
+        <ListBox Grid.Row="7" Height="30" Margin="10 0 10 10">
+            <ListBoxItem Content="{Binding Meeting.EmployeesAttendingMeeting, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ListBoxItem>
+        </ListBox>
 
         <StackPanel Grid.Row="8" Orientation="Horizontal">
             <Button Content="Save" Width="120" Margin=" 10"
                     Command="{Binding SaveCommand}"/>
+            
         </StackPanel>
 
     </Grid>
